@@ -60,14 +60,14 @@ private struct OccurrencesCountInputAlertViewModifier: ViewModifier {
             } message: {
                 Text("How many times would you like to repeat? (Max 400)", bundle: .core)
             }
-            .onChange(of: isPresented) {
+            .onChange(of: isPresented) { _ in
                 inputModel.update()
 
                 if !isPresented {
                     isDoneDisabled = false
                 }
             }
-            .onChange(of: inputModel.text) {
+            .onChange(of: inputModel.text) { _ in
                 guard isPresented else { return }
                 isDoneDisabled = inputModel.isValid == false
             }

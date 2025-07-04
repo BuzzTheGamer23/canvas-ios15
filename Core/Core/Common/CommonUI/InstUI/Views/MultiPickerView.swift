@@ -24,7 +24,7 @@ extension InstUI {
         case leading, center, trailing, natural
 
         func toLabelTextAlignment() -> NSTextAlignment {
-            let direction = Locale.current.language.characterDirection
+            let direction = Locale.characterDirection(forLanguage: Locale.current.languageCode ?? "en")
             let isRTL = direction == .rightToLeft
 
             switch self {

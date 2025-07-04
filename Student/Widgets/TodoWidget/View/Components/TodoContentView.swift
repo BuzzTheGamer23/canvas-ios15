@@ -39,7 +39,7 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
     var body: some View {
         content()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .containerRelativeFrame(.vertical, alignment: .top)
+            //.containerRelativeFrame(.vertical, alignment: .top)
             .accessibilitySortPriority(1)
             .overlay(alignment: .topTrailing) {
                 Group {

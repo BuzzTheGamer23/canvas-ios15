@@ -210,7 +210,7 @@ public class PlannerViewModel: ObservableObject {
             router.show(vc, from: screen, options: .detail)
         default:
             if let url = plannable.htmlURL {
-                let to = url.appendingQueryItems(URLQueryItem(name: "origin", value: "calendar"))
+                let to = url.appendingQueryItems([URLQueryItem(name: "origin", value: "calendar")])
                 router.route(to: to, from: screen, options: .detail)
             }
         }

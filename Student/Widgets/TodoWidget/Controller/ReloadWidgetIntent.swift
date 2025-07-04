@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import AppIntents
+/*import AppIntents
 
 struct ReloadWidgetIntent: AppIntent {
     static var title: LocalizedStringResource = "Reload Widget"
@@ -25,4 +25,4 @@ struct ReloadWidgetIntent: AppIntent {
     func perform() async throws -> some IntentResult {
         return .result()
     }
-}
+}*/

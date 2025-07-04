@@ -47,7 +47,6 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
         addSnackBar()
-        registerForTraitChanges()
     }
 
     override func viewIsAppearing(_ animated: Bool) {
@@ -65,9 +64,9 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
-    private func registerForTraitChanges() {
-        let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: StudentTabBarController, _) in
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle) {
             self.configureStyle()
         }
     }

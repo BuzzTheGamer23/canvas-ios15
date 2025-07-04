@@ -103,7 +103,6 @@ class CalendarDaysViewController: UIViewController {
             end = currentDate
         }
         refresh()
-        registerForTraitChanges()
     }
 
     override func viewWillLayoutSubviews() {
@@ -114,10 +113,10 @@ class CalendarDaysViewController: UIViewController {
             week.alpha = w == selectedWeekIndex ? 1 : ratio
         }
     }
-
-    private func registerForTraitChanges() {
-        let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (self: CalendarDaysViewController, _) in
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.verticalSizeClass != traitCollection.verticalSizeClass) {
             // Manually refresh the spacing upon rotation
             self.weeksStackView.spacing = self.weekGap
         }
@@ -289,7 +288,6 @@ class CalendarDayButton: UIButton {
         ])
 
         tintColorDidChange()
-        registerForTraitChanges()
     }
 
     override func tintColorDidChange() {
@@ -307,10 +305,10 @@ class CalendarDayButton: UIButton {
         }
         dotContainer.isHidden = isSelected
     }
-
-    private func registerForTraitChanges() {
-        let traits = [UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (self: CalendarDayButton, _) in
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.verticalSizeClass != traitCollection.verticalSizeClass) {
             // Manually refresh the spacing upon rotation
             self.dotSpacingConstraint?.constant = self.dotSpacing
         }

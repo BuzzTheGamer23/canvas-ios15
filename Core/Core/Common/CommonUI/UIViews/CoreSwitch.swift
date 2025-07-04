@@ -126,30 +126,3 @@ private struct ToggleWrapper: View {
             .accessibilityRemoveTraits(.isImage)
     }
 }
-
-#Preview(traits: .sizeThatFitsLayout) {
-    let createSwitchView: () -> CoreSwitch = {
-        let result = CoreSwitch(frame: .zero)
-        result.tintColor = .course1
-        return result
-    }
-    let enabledOn = createSwitchView()
-    enabledOn.isOn = true
-    let enabledOff = createSwitchView()
-
-    let disabledOn = createSwitchView()
-    disabledOn.isOn = true
-    disabledOn.isEnabled = false
-    let disabledOff = createSwitchView()
-    disabledOff.isEnabled = false
-
-    let stack = UIStackView(arrangedSubviews: [
-        enabledOn,
-        enabledOff,
-        disabledOn,
-        disabledOff
-    ])
-    stack.axis = .vertical
-
-    return stack
-}

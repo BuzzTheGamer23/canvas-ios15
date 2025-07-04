@@ -37,7 +37,7 @@ struct BouncyImage: View {
             .gesture(pushGesture.simultaneously(with: dragGesture))
             .offset(dragOffset)
             .animation(springAnimation, value: dragOffset)
-            .onChange(of: dragOffset) {
+            .onChange(of: dragOffset) { _ in
                 if shouldTriggerDragStartFeedback {
                     shouldTriggerDragStartFeedback = false
                     feedback.impactOccurred()

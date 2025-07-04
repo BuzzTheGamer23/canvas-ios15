@@ -521,7 +521,7 @@ extension StudentAppDelegate: LoginDelegate {
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
-        UNUserNotificationCenter.current().setBadgeCount(0)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
         deleteAssignmentRemindersAsync(userId: session.userID)

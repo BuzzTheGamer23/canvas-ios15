@@ -101,7 +101,7 @@ struct CourseSmartSearchGroupedResultsView: View {
                             let section = sectionBinding.wrappedValue
                             let title = "\(section.type.title) (\(section.results.count))"
 
-                            DisclosureGroup(title, isExpanded: sectionBinding.expanded) {
+                            CourseSearchSectionDisclosureGroup(title, isExpanded: sectionBinding.expanded) {
                                 ForEach(section.results) { result in
                                     CourseSearchResultRowView(
                                         selectedId: $selectedId,
@@ -111,7 +111,6 @@ struct CourseSmartSearchGroupedResultsView: View {
                                     RowDivider(withPadding: section.results.last?.id != result.id)
                                 }
                             }
-                            .disclosureGroupStyle(.courseSearchResultSection)
                         }
                     }
                     .safeAreaInset(edge: .bottom, content: {
@@ -143,26 +142,34 @@ struct CourseSmartSearchGroupedResultsView: View {
 
 // MARK: - Helper Views
 
-private struct CourseSearchSectionDisclosureStyle: DisclosureGroupStyle {
+private struct CourseSearchSectionDisclosureGroup<Label, Content>: View where Label: View, Content: View {
 
     @ScaledMetric private var uiScale: CGFloat = 1
+    let content: Content
+    let label: Label
+    @Binding var isExpanded: Bool
 
-    func makeBody(configuration: Configuration) -> some View {
+    init(_ label: String, isExpanded: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) where Label == Text {
+        self.content = content()
+        self.label = Text(label)
+        self._isExpanded = isExpanded
+    }
+
+    var body: some View {
         Button {
             withAnimation {
-                configuration.isExpanded.toggle()
+                isExpanded.toggle()
             }
         } label: {
             HStack(alignment: .center) {
-                configuration
-                    .label
+                label
                     .font(.semibold14)
                     .foregroundStyle(Color.textDark)
                 Spacer()
                 Image
                     .chevronDown
                     .size(uiScale.iconScale * 18)
-                    .rotationEffect(.degrees(configuration.isExpanded ? 180 : 0))
+                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
             }
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
@@ -170,14 +177,10 @@ private struct CourseSearchSectionDisclosureStyle: DisclosureGroupStyle {
         }
         .buttonStyle(.plain)
         RowDivider()
-        if configuration.isExpanded {
-            configuration.content
+        if isExpanded {
+            content
         }
     }
-}
-
-private extension DisclosureGroupStyle where Self == CourseSearchSectionDisclosureStyle {
-    static var courseSearchResultSection: Self { CourseSearchSectionDisclosureStyle() }
 }
 
 private struct RowDivider: View {

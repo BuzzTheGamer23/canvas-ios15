@@ -171,7 +171,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 }
             }
             .listStyle(.plain)
-            .scrollContentBackground(.hidden)
+            // .scrollContentBackground(.hidden)
             .refreshable {
                 await viewModel.refresh()
             }

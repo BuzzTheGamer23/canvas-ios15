@@ -42,7 +42,7 @@ public class CoreSplitViewController: UISplitViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         preferredDisplayMode = .oneBesideSecondary
-        registerForTraitChanges()
+        self.updateTitleViews()
     }
 
     private func setupBackgroundStateObservers() {
@@ -108,10 +108,12 @@ public class CoreSplitViewController: UISplitViewController {
             String(localized: "Expand detail view", bundle: .core)
         return prettyButton
     }
-
-    private func registerForTraitChanges() {
-        let traits: [UITrait] = [UITraitVerticalSizeClass.self, UITraitHorizontalSizeClass.self, UITraitLayoutDirection.self]
-        registerForTraitChanges(traits) { (self: CoreSplitViewController, _) in
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.verticalSizeClass != traitCollection.verticalSizeClass ||
+            previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass ||
+            previousTraitCollection?.layoutDirection != traitCollection.layoutDirection) {
             self.updateTitleViews()
         }
     }

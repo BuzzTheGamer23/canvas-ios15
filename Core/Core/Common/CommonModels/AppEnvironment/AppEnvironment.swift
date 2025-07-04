@@ -178,6 +178,6 @@ open class AppEnvironment {
     }
 
     public var apiHost: String? {
-        currentSession?.baseURL.host()
+        currentSession?.baseURL.host
     }
 }

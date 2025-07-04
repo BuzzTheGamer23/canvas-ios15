@@ -152,7 +152,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     envResolver: envResolver
                 )
                 .map { fileUrl in
-                    fileUrl.replacing(documentsDirectory.path(), with: "")
+                    fileUrl.replacingOccurrences(of: documentsDirectory.path, with: "")
                 }
             }
             .eraseToAnyPublisher()
@@ -189,7 +189,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         )
 
         if let fileId {
-            rootURL.append(path: "file-\(fileId)", directoryHint: .isDirectory)
+            rootURL.appendPathComponent("file-\(fileId)", isDirectory: true)
         }
 
         let saveURL = rootURL.appendingPathComponent(fileName)

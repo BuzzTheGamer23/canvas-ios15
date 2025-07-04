@@ -30,7 +30,7 @@ extension URL {
         urlComps.scheme = "canvas-courses"
         urlComps.host = AppEnvironment.shared.currentSession?.baseURL.host
         urlComps.path = "/" + path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-        return urlComps.url ?? URL(filePath: "/")
+        return urlComps.url ?? URL(fileURLWithPath: "/")
     }
 
     static func todoWidgetRoute(_ path: String) -> URL {

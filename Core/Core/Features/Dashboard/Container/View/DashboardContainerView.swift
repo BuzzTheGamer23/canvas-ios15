@@ -108,10 +108,10 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         if let popoverController = settingsViewController.popoverPresentationController {
             var navButtonView = controller.value.navigationItem.rightBarButtonItem?.customView
 
-            if navButtonView == nil,
+            /*if navButtonView == nil,
                let trailingView = controller.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
                 navButtonView = trailingView
-            }
+            }*/
 
             popoverController.sourceView = navButtonView
             popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)

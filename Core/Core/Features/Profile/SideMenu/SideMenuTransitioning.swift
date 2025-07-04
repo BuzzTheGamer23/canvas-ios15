@@ -109,8 +109,6 @@ public class SideMenuPresentationController: UIPresentationController {
         UIView.animate(withDuration: animationDuration) {
             self.dimmer.alpha = 1
         }
-
-        registerForTraitChanges()
     }
 
     public override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -150,10 +148,10 @@ public class SideMenuPresentationController: UIPresentationController {
         super.containerViewWillLayoutSubviews()
         presentedViewController.view.frame = frameOfPresentedViewInContainerView
     }
-
-    private func registerForTraitChanges() {
-        let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: SideMenuPresentationController, _) in
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle) {
             let backGroundColor: UIColor = self.traitCollection.isDarkInterface ? .backgroundLightest : .backgroundDarkest
             self.dimmer.backgroundColor = backGroundColor.withAlphaComponent(0.9)
         }

@@ -35,7 +35,7 @@ extension CoreWebView {
 
         public init(webView: WKWebView) {
             originalConstraints = (webView.superview?.constraintsAffecting(view: webView) ?? []) + webView.constraints
-            fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
+            /*fullScreenObservation = webView.observe(\.fullscreenState, options: []) { [weak self] webView, _  in
                 guard let self else { return }
 
                 switch webView.fullscreenState {
@@ -50,7 +50,7 @@ extension CoreWebView {
                     self.webView = nil
                 default: break
                 }
-            }
+            }*/
         }
 
         private func matchFullScreenContainerSize(_ webView: WKWebView) {

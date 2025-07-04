@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
 import Combine
 import UserNotifications
 
@@ -80,4 +81,16 @@ public extension UserNotificationCenterProtocol {
     }
 }
 
-extension UNUserNotificationCenter: UserNotificationCenterProtocol {}
+extension UNUserNotificationCenter: UserNotificationCenterProtocol {
+    @available(iOSApplicationExtension, unavailable)
+    public func setBadgeCount(_ newBadgeCount: Int, withCompletionHandler completionHandler: (((any Error)?) -> Void)?) {
+        UIApplication.shared.applicationIconBadgeNumber = newBadgeCount
+        completionHandler?(nil)
+    }
+}
+
+extension UserNotificationCenterProtocol {
+    public func setBadgeCount(_ newBadgeCount: Int, withCompletionHandler completionHandler: (((any Error)?) -> Void)?) {
+        completionHandler?(UNError(_nsError: .instructureError("Cannot set badge count from within an app extension")))
+    }
+}

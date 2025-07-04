@@ -109,7 +109,7 @@ extension InstUI {
             .onTapGesture {
                 isFocused = true
             }
-            .onChange(of: isFocused) {
+            .onChange(of: isFocused) { _ in
                 guard isFocused else { return }
                 focusedPublisher.send()
             }
@@ -128,7 +128,7 @@ extension InstUI {
                 onFocus: onFocus,
                 focusTrigger: focusedPublisher.eraseToAnyPublisher()
             )
-            .scrollDisabled(true)
+            //.scrollDisabled(true)
             .focused($isFocused)
             .frame(height: rceHeight)
             .accessibilityElement(children: .contain)

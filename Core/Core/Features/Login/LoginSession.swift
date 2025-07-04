@@ -169,9 +169,9 @@ public struct LoginSession: Codable, Hashable {
             let sessionFolder = URL
                 .Directories
                 .annotatedPDFs
-                .appending(component: folderUrl.lastPathComponent, directoryHint: .isDirectory)
+                .appendingPathComponent(folderUrl.lastPathComponent, isDirectory: true)
 
-            if fileManager.fileExists(atPath: sessionFolder.path()) == false {
+            if fileManager.fileExists(atPath: sessionFolder.path) == false {
                 try fileManager.createDirectory(at: sessionFolder, withIntermediateDirectories: true)
             }
 
@@ -179,7 +179,7 @@ public struct LoginSession: Codable, Hashable {
                 .contentsOfDirectory(at: folderUrl, includingPropertiesForKeys: nil)
                 .filter({ $0.lastPathComponent.isDigitsOnlyFileName })
                 .forEach({ content in
-                    let destFolder = sessionFolder.appending(component: content.lastPathComponent)
+                    let destFolder = sessionFolder.appendingPathComponent(content.lastPathComponent)
                     try fileManager.createDirectory(at: destFolder, withIntermediateDirectories: true)
 
                     // Only PDFs
@@ -189,7 +189,7 @@ public struct LoginSession: Codable, Hashable {
                         .forEach({ subContent in
                             try fileManager.moveItem(
                                 at: subContent,
-                                to: destFolder.appending(component: subContent.lastPathComponent)
+                                to: destFolder.appendingPathComponent(subContent.lastPathComponent)
                             )
                         })
                 })
@@ -278,6 +278,6 @@ private extension String {
         if hasSuffix("/") {
             string.removeLast()
         }
-        return string.split(separator: /\d+/).isEmpty
+        return (try? NSRegularExpression(pattern: "\\D+").matches(in: string, range: NSRange(location: 0, length: string.count)).isEmpty) ?? false
     }
 }

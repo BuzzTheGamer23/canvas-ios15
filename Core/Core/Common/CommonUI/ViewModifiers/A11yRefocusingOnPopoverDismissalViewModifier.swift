@@ -34,7 +34,7 @@ struct A11yRefocusingOnPopoverDismissalViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .accessibilityFocused($isAccFocused)
-            .onChange(of: isAccFocused) {
+            .onChange(of: isAccFocused) { _ in
                 if isAccFocused {
                     Self.lastFocused = trackingPopoverID
                 }

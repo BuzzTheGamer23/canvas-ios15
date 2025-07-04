@@ -84,7 +84,7 @@ extension InstUI {
                 },
                 label: { label }
             )
-            .onChange(of: selectedOption) {
+            .onChange(of: selectedOption) { _ in
                 isA11yFocused = true
             }
             .accessibilityRemoveTraits(.isButton) // It would read "Button, Pop up button" otherwise

@@ -140,7 +140,6 @@ open class CoreWebView: WKWebView {
         isOpaque = false
         backgroundColor = UIColor.clear
         translatesAutoresizingMaskIntoConstraints = false
-        isInspectable = true
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -161,8 +160,9 @@ open class CoreWebView: WKWebView {
             guard let src = message.body as? String else { return }
             self?.loadFrame(src: src)
         }
-
-        registerForTraitChanges()
+        
+        self.updateInterfaceStyle()
+        self.reportContentHeight()
     }
 
     @discardableResult
@@ -355,10 +355,10 @@ open class CoreWebView: WKWebView {
             fileLoadCompletion?(.init(error: error))
         }
     }
-
-    private func registerForTraitChanges() {
-        let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: CoreWebView, _) in
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle) {
             self.updateInterfaceStyle()
             self.reportContentHeight()
         }

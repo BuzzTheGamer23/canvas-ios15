@@ -27,14 +27,15 @@ struct TodoFailureView: View {
         TodoContentView(
             content: {
                 TodoStatusView(status: .failure)
-                    .invalidatableContent()
+                    //.invalidatableContent()
             },
             actionView: {
-                IntentActionView(
+                NoActionView()
+                /*IntentActionView(
                     icon: .refreshSolid,
                     intent: ReloadWidgetIntent(),
                     accessibilityLabel: String(localized: "Reload")
-                )
+                )*/
             }
         )
     }

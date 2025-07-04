@@ -159,7 +159,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     private var loadingView: some View {
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
-            .containerRelativeFrame([.vertical, .horizontal])
+            //.containerRelativeFrame([.vertical, .horizontal])
     }
 
     @ViewBuilder
@@ -242,7 +242,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.", bundle: .core)
         )
         .padding(.horizontal, 16)
-        .containerRelativeFrame([.horizontal, .vertical])
+        //.containerRelativeFrame([.horizontal, .vertical])
         .accessibilityIdentifier("GradeList.emptyView")
     }
 
@@ -257,7 +257,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         .listSectionSeparator(.hidden)
         .listSectionSeparatorTint(Color.clear)
         .listRowBackground(Color.clear)
-        .containerRelativeFrame([.horizontal, .vertical])
+        //.containerRelativeFrame([.horizontal, .vertical])
     }
 
     @ViewBuilder

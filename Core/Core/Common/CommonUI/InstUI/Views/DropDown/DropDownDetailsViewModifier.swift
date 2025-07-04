@@ -107,7 +107,7 @@ struct DropDownDetailsContainerViewModifier<ListContent: View>: ViewModifier {
             .onPreferenceChange(ScreenFramePrefKey.self, perform: { value in
                 screenFrame = value
             })
-            .onChange(of: state.isDetailsShown) {
+            .onChange(of: state.isDetailsShown) { _ in
                 if state.isDetailsShown { isFocused = true }
             }
     }

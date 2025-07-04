@@ -38,7 +38,7 @@ public class StudioVideoCleanupInteractorLive: StudioVideoCleanupInteractor {
 
         return Just(())
             .tryMap {
-                if !FileManager.default.fileExists(atPath: offlineStudioDirectory.path()) {
+                if !FileManager.default.fileExists(atPath: offlineStudioDirectory.path) {
                     return []
                 }
                 let allItemsInStudioDirectory = try FileManager.default.contentsOfDirectory(

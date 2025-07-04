@@ -289,7 +289,9 @@ struct RecurrenceRule: Equatable {
 
         init?(rruleString: String) {
             guard
-                let val = rruleString.split(separator: /\d+/).last,
+                // let val = rruleString.split(separator: /\d+/).last,
+                let range = try? NSRegularExpression(pattern: "\\D+").matches(in: rruleString, range: NSRange(location: 0, length: rruleString.count)).last?.range,
+                let val = Optional((rruleString as NSString).substring(with: range)),
                 let day = Weekday(rawValue: String(val)) else { return nil }
 
             let num = Int(rruleString: rruleString.replacingOccurrences(of: day.rawValue, with: ""))

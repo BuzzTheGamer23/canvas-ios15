@@ -128,7 +128,7 @@ public struct AudioPickerView: View {
                         viewModel.seekInAudio(value)
                     }
                 }
-                .onChange(of: viewModel.audioPlayerPosition) {
+                .onChange(of: viewModel.audioPlayerPosition) { _ in
                     let value = viewModel.normalizeAudioPositionValue(rawValue: viewModel.audioPlayerPosition)
                     playbackScrollTimer?.invalidate()
                     if viewModel.isPlaying {
@@ -141,7 +141,7 @@ public struct AudioPickerView: View {
                         }
                     }
                 }
-                .onChange(of: delayedScrollPosition) {
+                .onChange(of: delayedScrollPosition) { _ in
                     proxy.scrollTo(delayedScrollPosition, anchor: .top)
                 }
                 .simultaneousGesture(DragGesture().onChanged { _ in

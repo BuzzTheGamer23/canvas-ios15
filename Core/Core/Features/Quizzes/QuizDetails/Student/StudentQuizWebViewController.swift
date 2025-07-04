@@ -55,11 +55,11 @@ public class StudentQuizWebViewController: UIViewController {
 
         let url = env.api.baseURL
             .appendingPathComponent("courses/\(courseID)/quizzes/\(quizID)")
-            .appendingQueryItems(
+            .appendingQueryItems([
                 URLQueryItem(name: "force_user", value: "1"),
                 URLQueryItem(name: "persist_headless", value: "1"),
                 URLQueryItem(name: "platform", value: "ios")
-            )
+            ])
         env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
             performUIUpdate { self?.webView.load(URLRequest(url: response?.session_url ?? url)) }
         }

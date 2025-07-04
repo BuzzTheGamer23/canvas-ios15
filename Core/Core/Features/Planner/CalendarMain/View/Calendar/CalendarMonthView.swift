@@ -29,8 +29,9 @@ struct CalendarMonthView: View {
     fileprivate var month: CalendarMonth { calendarDay.month }
 
     var body: some View {
+        SwiftUI.EmptyView()
 
-        Grid(horizontalSpacing: 0, verticalSpacing: 0) {
+        /*Grid(horizontalSpacing: 0, verticalSpacing: 0) {
 
             ForEach(month.weeks) { week in
 
@@ -73,7 +74,7 @@ struct CalendarMonthView: View {
         }
         .onReceive(eventDatesPublisher) { newList in
             self.dates = newList
-        }
+        }*/
     }
 }
 
@@ -83,7 +84,8 @@ struct CalendarStaticMonthView: View {
     let month: CalendarMonth
 
     var body: some View {
-        Grid(horizontalSpacing: 0, verticalSpacing: 0) {
+        SwiftUI.EmptyView()
+        /*Grid(horizontalSpacing: 0, verticalSpacing: 0) {
             ForEach(month.weeks) { week in
                 GridRow {
                     ForEach(week.weekdays) { wday in
@@ -94,7 +96,7 @@ struct CalendarStaticMonthView: View {
         }
         .onReceive(eventDatesPublisher) { newList in
             self.dates = newList
-        }
+        }*/
     }
 }
 

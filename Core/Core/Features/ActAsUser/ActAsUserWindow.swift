@@ -50,7 +50,11 @@ public class ActAsUserWindow: UIWindow {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        registerForTraitChanges()
+        NotificationCenter.default.post(
+            name: .windowUserInterfaceStyleDidChange,
+            object: nil,
+            userInfo: ["style": self.traitCollection.userInterfaceStyle]
+        )
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -86,10 +90,10 @@ public class ActAsUserWindow: UIWindow {
             return false
         }
     }
-
-    private func registerForTraitChanges() {
-        let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: ActAsUserWindow, _) in
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle) {
             NotificationCenter.default.post(
                 name: .windowUserInterfaceStyleDidChange,
                 object: nil,

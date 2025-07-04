@@ -47,7 +47,10 @@ func withAnimation<Result>(
     _ body: () throws -> Result,
     completion: @escaping () -> Void
 ) rethrows -> Result {
-    return try withAnimation(.spring(duration: duration), body, completion: completion)
+    
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: completion)
+    return try withAnimation(.spring(duration: duration), body)
 }
 
 extension TimeInterval {

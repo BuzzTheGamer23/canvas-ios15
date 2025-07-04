@@ -57,7 +57,7 @@ public extension URL {
 
         /// The `AnnotatedPDFs` directory in the application documents' private folder.
         public static var annotatedPDFs: URL {
-            documents.appending(component: URL.Paths.annotatedPDFs, directoryHint: .isDirectory)
+            documents.appendingPathComponent(URL.Paths.annotatedPDFs, isDirectory: true)
         }
 
         public static var library: URL {
@@ -99,7 +99,7 @@ public extension URL {
             public static func rootURL(
                 sessionID: String
             ) -> URL {
-                URL.Directories.documents.appending(path: "\(sessionID)/Offline")
+                URL.Directories.documents.appendingPathComponent("\(sessionID)/Offline")
             }
 
             public static func courseFolder(
@@ -180,10 +180,14 @@ public extension URL {
         return size
     }
 
-    func appendingQueryItems(_ items: URLQueryItem...) -> URL {
+    func appendingQueryItems(_ items: [URLQueryItem]) -> URL {
         var components = URLComponents.parse(self)
         components.queryItems = (components.queryItems ?? []) + items
         return components.url ?? self
+    }
+
+    func appendingQueryItems(_ items: URLQueryItem...) -> URL {
+        return appendingQueryItems(items)
     }
 
     func containsQueryItem(named key: String) -> Bool {
@@ -192,7 +196,7 @@ public extension URL {
     }
 
     func appendingOrigin(_ origin: String) -> URL {
-        return appendingQueryItems(.init(name: "origin", value: origin))
+        return appendingQueryItems([.init(name: "origin", value: origin)])
     }
 
     func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
@@ -246,7 +250,7 @@ public extension URL {
             throw NSError.instructureError("Failed to create URL", code: 0)
         }
 
-        return relativeURL.path()
+        return relativeURL.path
     }
 
     #if DEBUG

@@ -34,7 +34,7 @@ public class StudioVideoCacheInteractorLive: StudioVideoCacheInteractor {
         videoLocation: URL,
         expectedSize: Int
     ) -> Bool {
-        guard FileManager.default.fileExists(atPath: videoLocation.path()) else {
+        guard FileManager.default.fileExists(atPath: videoLocation.path) else {
             return false
         }
 

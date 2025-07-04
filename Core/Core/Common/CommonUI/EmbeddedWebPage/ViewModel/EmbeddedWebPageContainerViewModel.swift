@@ -83,12 +83,12 @@ public class EmbeddedWebPageContainerViewModel: ObservableObject {
 
             baseURL.appendPathComponent(context.pathComponent)
             baseURL.appendPathComponent(webPageModel.urlPathComponent)
-            baseURL.append(queryItems: webPageModel.queryItems)
-            baseURL.append(queryItems: [
-                URLQueryItem(name: "embed", value: "true"),
-                URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
-                URLQueryItem(name: "session_locale", value: Locale.current.identifier.replacingOccurrences(of: "_", with: "-"))
-            ])
+            baseURL = baseURL.appendingQueryItems(webPageModel.queryItems)
+                .appendingQueryItems([
+                    URLQueryItem(name: "embed", value: "true"),
+                    URLQueryItem(name: "session_timezone", value: TimeZone.current.identifier),
+                    URLQueryItem(name: "session_locale", value: Locale.current.identifier.replacingOccurrences(of: "_", with: "-"))
+                ])
 
             return baseURL
         }()

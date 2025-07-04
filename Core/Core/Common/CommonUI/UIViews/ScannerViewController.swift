@@ -209,8 +209,12 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             let videoCaptureDevice = AVCaptureDevice.default(for: .video)
         else { return }
 
-        let rotationCoordinator = AVCaptureDevice.RotationCoordinator(device: videoCaptureDevice, previewLayer: previewLayer)
-        connection.videoRotationAngle = rotationCoordinator.videoRotationAngleForHorizonLevelPreview
+        connection.videoOrientation = switch(orientation) {
+        case .portraitUpsideDown: .portraitUpsideDown
+        case .landscapeRight:     .landscapeRight
+        case .landscapeLeft:      .landscapeLeft
+        default:                  .portrait
+        }
         previewLayer.frame = view.layer.bounds
     }
 }

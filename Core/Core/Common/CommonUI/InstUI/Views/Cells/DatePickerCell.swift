@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Placement
 
 extension InstUI {
 
@@ -100,7 +101,7 @@ extension InstUI {
         private var mainContent: some View {
             // Prefer to fit the whole content in one line, but break subviews gradually if needed.
             // Using only one level of `ViewThatFits`, because nesting them is visibly less performant.
-            ViewThatFits(in: .horizontal) {
+            PlacementThatFits(in: .horizontal) {
                 HStack(spacing: Spacing.horizontal) {
                     labelView
                     datePickerView(.horizontal)

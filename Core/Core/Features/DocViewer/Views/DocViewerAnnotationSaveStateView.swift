@@ -23,7 +23,7 @@ struct DocViewerAnnotationSaveStateView: View {
     @ObservedObject private var viewModel: DocViewerAnnotationToolbarViewModel
 
     init(
-        viewModel: DocViewerAnnotationToolbarViewModel,
+        viewModel: DocViewerAnnotationToolbarViewModel
     ) {
         self.viewModel = viewModel
     }
@@ -42,8 +42,8 @@ struct DocViewerAnnotationSaveStateView: View {
                     .font(.regular12, lineHeight: .fit)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .geometryGroup() // To fix the icon and text animating at different speeds
-            .transition(.push(from: .bottom))
+            // .geometryGroup() // To fix the icon and text animating at different speeds
+            .transition(.slide)
             .id(viewModel.saveState) // This will trigger a transition animation when the state changes
         }
         .background(Color.backgroundLightest)

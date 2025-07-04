@@ -133,11 +133,11 @@ extension InstUI {
                 .padding(style.edgeInsets * uiScale)
                 .background(
                     Capsule()
-                        .fill(color)
                         .stroke(Color.textLightest, lineWidth: style.borderWidth)
+                        .foregroundColor(color)
                 )
                 .fixedSize(horizontal: true, vertical: false)
-                .transition(.push(from: .top))
+                .transition(.slide)
                 .animation(.default, value: text)
         }
     }

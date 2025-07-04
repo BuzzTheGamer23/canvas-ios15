@@ -35,7 +35,7 @@ struct PlannerListRowView: View {
         }
         .listRowBackground(Color.backgroundLightest)
         .listItemTint(itemTint)
-        .alignmentGuide(.listRowSeparatorLeading, computeValue: { _ in 0 })
+        .alignmentGuide(.leading, computeValue: { _ in 0 })
     }
 
     private var itemTint: ListItemTint? {

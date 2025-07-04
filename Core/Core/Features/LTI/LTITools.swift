@@ -185,7 +185,7 @@ public class LTITools: NSObject {
                 self?.markModuleItemRead()
                 completionHandler?(success)
             }
-            let url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
+            let url = response.url.appendingQueryItems([URLQueryItem(name: "platform", value: "mobile")])
 
             if isQuizLTI == true {
                 let controller = CoreWebViewController(features: [

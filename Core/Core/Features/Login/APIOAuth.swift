@@ -230,9 +230,7 @@ public struct GetWebSessionRequest: APIRequestable {
         }
 
         var returnToUrl = to
-        returnToUrlQueryItems.forEach {
-            returnToUrl = returnToUrl.appendingQueryItems($0)
-        }
+        returnToUrl = returnToUrl.appendingQueryItems(returnToUrlQueryItems)
         return [ .value("return_to", returnToUrl.absoluteString) ]
     }
 

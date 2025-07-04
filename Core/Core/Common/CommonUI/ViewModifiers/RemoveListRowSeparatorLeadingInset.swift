@@ -20,7 +20,7 @@ import SwiftUI
 
 struct RemoveListRowSeparatorLeadingInset: ViewModifier {
     func body(content: Content) -> some View {
-        content.alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+        content.alignmentGuide(.leading) { viewDimensions in
             -viewDimensions.width
         }
     }

@@ -114,11 +114,11 @@ private struct WrappedSelectableTextView: UIViewRepresentable {
     }
 
     func sizeThatFits(
-        _ proposal: ProposedViewSize,
+        _ proposal: (CGFloat?, CGFloat?),
         uiView: UITextView,
         context: Self.Context
     ) -> CGSize? {
-        let proposedWidth = proposal.width ?? 0
+        let proposedWidth = proposal.0 ?? 0
         let calculatedHeight = calculateTextViewHeight(with: proposedWidth, for: uiView.attributedText)
 
         return CGSize(width: proposedWidth, height: calculatedHeight)

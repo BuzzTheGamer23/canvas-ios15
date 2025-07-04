@@ -60,7 +60,7 @@ extension CoreWebView: WKDownloadDelegate {
               httpResponse.hasAttachmentContentDispositionHeader
         else { return nil }
 
-        let suggestedUrl = URL.Directories.temporary.appending(component: suggestedFilename)
+        let suggestedUrl = URL.Directories.temporary.appendingPathComponent(suggestedFilename)
         let attachment = CoreWebAttachment(
             url: suggestedUrl,
             contentType: httpResponse.value(forHTTPHeaderField: HttpHeader.contentType)
@@ -69,7 +69,7 @@ extension CoreWebView: WKDownloadDelegate {
         downloadingAttachment = attachment
 
         do {
-            if FileManager.default.fileExists(atPath: suggestedUrl.path()) {
+            if FileManager.default.fileExists(atPath: suggestedUrl.path) {
                 try FileManager.default.removeItem(at: suggestedUrl)
             }
 

@@ -32,7 +32,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
 
     private let screenConfig = InstUI.BaseScreenConfig(
         refreshable: false,
-        scrollBounce: .basedOnSize,
+        //scrollBounce: .basedOnSize,
         emptyPandaConfig: .init(
             scene: SpacePanda(),
             title: String(localized: "No Submissions", bundle: .teacher),

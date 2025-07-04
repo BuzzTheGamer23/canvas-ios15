@@ -60,12 +60,7 @@ struct ConversationAttachmentsCardView: View {
                             .frame(maxWidth: 128, maxHeight: 128)
                             .clipped()
                             .clipShape(
-                                .rect(
-                                    topLeadingRadius: 10,
-                                    bottomLeadingRadius: 10,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 0
-                                )
+                                .rect(cornerRadius: 10)
                             )
                     default:
                         if errorCount < 2 {
@@ -124,12 +119,7 @@ struct ConversationAttachmentsCardView: View {
             .frame(width: 128, height: 128)
             .background(Color.backgroundLight)
             .clipShape(
-                .rect(
-                    topLeadingRadius: 10,
-                    bottomLeadingRadius: 10,
-                    bottomTrailingRadius: 0,
-                    topTrailingRadius: 0
-                )
+                .rect(cornerRadius: 10)
             )
     }
 

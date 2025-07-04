@@ -45,7 +45,7 @@ extension TodoItem {
         if let dateString = date
             .formatted(.queryDayDateStyle)
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            url.append(queryItems: [
+            url = url.appendingQueryItems([
                 URLQueryItem(name: "todo_date", value: dateString)
             ])
         }

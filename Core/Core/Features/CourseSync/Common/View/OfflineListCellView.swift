@@ -210,33 +210,47 @@ public struct OfflineListCellView: View {
             .frame(minHeight: viewModel.cellHeight)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityActions {
-            Button {
-                viewModel.selectionDidToggle?()
-            } label: {
-                Text(viewModel.accessibilitySelectionText)
-            }
-
-            if viewModel.isCollapsed != nil {
-                Button {
-                    viewModel.collapseDidToggle?()
-                } label: {
-                    Text(viewModel.accessibilityAccordionHeaderText)
-                }
-            }
-
-            if viewModel.state.isError, viewModel.removeItemPressed != nil {
-                Button {
-                    viewModel.removeItemPressed?()
-                } label: {
-                    Text("Remove item", bundle: .core)
-                }
-            }
-
-            // viewModel.state.isError logic has been removed, because
-            // viewModel.removeItemPressed was never implemented.
+        .accessibilityAction(named: viewModel.accessibilitySelectionText) {
+            viewModel.selectionDidToggle?()
         }
+        .conditionalAccessibilityAction(viewModel.isCollapsed != nil, name: viewModel.accessibilityAccordionHeaderText) {
+            viewModel.collapseDidToggle?()
+        }
+        .conditionalAccessibilityAction((viewModel.state.isError && viewModel.removeItemPressed != nil), name: Text("Remove item", bundle: .core)) {
+            viewModel.removeItemPressed?()
+        }
+        // viewModel.state.isError logic has been removed, because
+        // viewModel.removeItemPressed was never implemented.
         .accessibility(label: Text(viewModel.accessibilityText))
+    }
+}
+
+// Stolen and modified from https://stackoverflow.com/a/79256318
+extension View {
+    @ViewBuilder
+    func conditionalAccessibilityAction(
+        _ condition: Bool,
+        name: String,
+        perform action: @escaping () -> Void
+    ) -> some View {
+        if condition {
+            self.accessibilityAction(named: name, action)
+        } else {
+            self
+        }
+    }
+    
+    @ViewBuilder
+    func conditionalAccessibilityAction(
+        _ condition: Bool,
+        name: Text,
+        perform action: @escaping () -> Void
+    ) -> some View {
+        if condition {
+            self.accessibilityAction(named: name, action)
+        } else {
+            self
+        }
     }
 }
 

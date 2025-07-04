@@ -44,7 +44,7 @@ struct RouteActionView: BottomActionView {
     }
 }
 
-struct IntentActionView<Intent: AppIntent>: BottomActionView {
+/*struct IntentActionView<Intent: AppIntent>: BottomActionView {
 
     let icon: Image
     let intent: Intent
@@ -60,11 +60,11 @@ struct IntentActionView<Intent: AppIntent>: BottomActionView {
             .accessibilityLabel(accessibilityLabel)
         }
     }
-}
+}*/
 
 struct NoActionView: BottomActionView {
     var isVisible: Bool { false }
-    var body: some View {}
+    var body: some View { SwiftUI.EmptyView() }
 }
 
 // MARK: Label View

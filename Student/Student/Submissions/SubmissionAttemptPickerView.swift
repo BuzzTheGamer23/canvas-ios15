@@ -77,7 +77,7 @@ class SubmissionAttemptPickerView: UIView {
             buttonConfig.image = .arrowOpenDownSolid
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
-            buttonConfig.indicator = .none
+            // buttonConfig.indicator = .none
 
             pickerButton.changesSelectionAsPrimaryAction = true
             pickerButton.showsMenuAsPrimaryAction = true

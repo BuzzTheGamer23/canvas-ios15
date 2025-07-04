@@ -73,7 +73,7 @@ public final class CourseTabUrlInteractor {
             return true
         }
 
-        var relativePath = String(url.relativePath.trimmingPrefix("/api/v1"))
+        var relativePath = url.relativePath.deletingPrefix("/api/v1")
 
         // handle already relative URLs without starting slash
         if relativePath.hasPrefix("course") {
@@ -129,7 +129,7 @@ public final class CourseTabUrlInteractor {
                 return TabModel(
                     id: tab.id,
                     htmlUrl: htmlURL.removingQueryAndFragment().absoluteString,
-                    apiBaseUrlHost: tab.apiBaseURL?.host()
+                    apiBaseUrlHost: tab.apiBaseURL?.host
                 )
             }
         }

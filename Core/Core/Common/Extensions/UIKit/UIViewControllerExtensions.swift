@@ -176,13 +176,13 @@ extension UIViewController {
             },
             viewController.navigationItem.observe(\.leftItemsSupplementBackButton) { [weak self] item, _ in
                 self?.navigationItem.leftItemsSupplementBackButton = item.leftItemsSupplementBackButton || leftItemsSupplementBackButton
-            },
-            viewController.navigationItem.observe(\.trailingItemGroups) { [weak self] item, _ in
+            }
+            /*viewController.navigationItem.observe(\.trailingItemGroups) { [weak self] item, _ in
                 let groupButtons = item.trailingItemGroups.flatMap { itemGroup in
                     itemGroup.barButtonItems
                 }
                 self?.navigationItem.rightBarButtonItems = groupButtons + right
-            }
+            }*/
         ]
 
         return observations

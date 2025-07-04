@@ -25,9 +25,7 @@ struct AnnouncementsWidgetView: View {
 
     var body: some View {
         buildView()
-            .containerBackground(for: .widget) {
-                Color.backgroundLightest
-            }
+            .background(Color.backgroundLightest)
     }
 
     @ViewBuilder

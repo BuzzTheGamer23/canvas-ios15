@@ -151,8 +151,7 @@ public class Assignment: NSManagedObject {
 
         var types = submissionTypes
         types.removeAll { $0 == .online_quiz }
-        types.replace([.external_tool], with: [.online_quiz])
-        return types
+        return types.map { ($0 == .external_tool) ? .online_quiz : $0 }
     }
 
     public var hasMultipleDueDates: Bool {

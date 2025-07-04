@@ -312,7 +312,7 @@ extension URLRequest: APIRequestable {
             request.setValue("Bearer \(token)", forHTTPHeaderField: HttpHeader.authorization)
         }
         if let actAsUserID = actAsUserID {
-            request.url = url.appendingQueryItems(URLQueryItem(name: "as_user_id", value: actAsUserID))
+            request.url = url.appendingQueryItems([URLQueryItem(name: "as_user_id", value: actAsUserID)])
         }
         return request
     }

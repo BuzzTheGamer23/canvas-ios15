@@ -50,6 +50,6 @@ public class FileAccessReportInteractor {
 private extension GetWebSessionRequest.Response {
 
     func makeReportURL() -> URL {
-        session_url.appendingQueryItems(.init(name: "preview", value: "1"))
+        session_url.appendingQueryItems([.init(name: "preview", value: "1")])
     }
 }

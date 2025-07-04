@@ -193,8 +193,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
                 .assign(to: \.fileUploadBaseURL, on: editor, ownership: .weak)
                 .store(in: &subscriptions)
         }
-
-        registerForTraitChanges()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -202,10 +200,11 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         navigationController?.navigationBar.useModalStyle()
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
     }
-
-    private func registerForTraitChanges() {
-        let traits: [UITrait] = [UITraitHorizontalSizeClass.self, UITraitVerticalSizeClass.self]
-        registerForTraitChanges(traits) { (self: DiscussionReplyViewController, _) in
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass ||
+            previousTraitCollection?.verticalSizeClass != traitCollection.verticalSizeClass) {
             self.heightChanged()
         }
     }

@@ -40,10 +40,10 @@ extension InstUI {
                 toggle
             }
             .accessibilityElement(children: .combine)
-            .accessibilityAddTraits(.isToggle)
+            .accessibilityAddTraits(.isButton)
             .accessibilityRemoveTraits(.isStaticText)
             .accessibilityValue(accessibilityValue)
-            .sensoryFeedback(.impact, trigger: isOn)
+            //.sensoryFeedback(.impact, trigger: isOn)
         }
 
         private var toggle: some View {
@@ -89,7 +89,7 @@ extension InstUI {
                     .animation(.none, value: isOn)
             }
             .padding(.horizontal, 1.4)
-            .geometryGroup()
+            // .geometryGroup()
         }
 
         private var backgroundColor: Color {

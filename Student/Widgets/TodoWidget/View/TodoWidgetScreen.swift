@@ -52,7 +52,7 @@ struct TodoWidgetScreen: View {
 
 extension View {
     func defaultTodoWidgetContainer() -> some View {
-        containerBackground(for: .widget) { Color.backgroundLightest }
+        background(Color.backgroundLightest)
     }
 }
 

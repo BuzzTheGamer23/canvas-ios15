@@ -106,7 +106,7 @@ extension AppEnvironment {
     /// This method returns an `AppEnvironmentOverride` using the given `url`s host if it
     /// doesn't match the one on `AppEnvironment.shared`.
     static func resolved(for url: URLComponents) -> AppEnvironment {
-        if let host = url.host, host != shared.api.baseURL.host(),
+        if let host = url.host, host != shared.api.baseURL.host,
            let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
             return AppEnvironmentOverride(base: shared, baseURL: baseURL)
         }
@@ -136,12 +136,12 @@ extension String {
         // Skip when baseURL equals to the shared one.
         if env.api.baseURL == AppEnvironment.shared.api.baseURL { return self }
 
-        return env.api.baseURL.appending(path: self).absoluteString
+        return env.api.baseURL.appendingPathComponent(self).absoluteString
     }
 
     private var isFullURLString: Bool {
         guard let url = URL(string: self) else { return false }
-        return url.host() != nil
+        return url.host != nil
     }
 }
 

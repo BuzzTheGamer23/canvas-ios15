@@ -73,7 +73,7 @@ struct TodoListView: View {
         }
         .padding([.top, .leading, .trailing], 10)
         .padding(.bottom, 40 * scale)
-        .containerRelativeFrame(.vertical, alignment: .top)
+        //.containerRelativeFrame(.vertical, alignment: .top)
         .overlay(alignment: .bottom) {
             if todoList.isFullList == false {
                 ViewFullListButton()

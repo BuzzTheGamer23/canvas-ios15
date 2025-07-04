@@ -77,8 +77,9 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                     .accessibilityLabel(Text("Filter", bundle: .core))
                 }
 
-                if let support = searchViewsProvider.supportButtonModel {
-                    ToolbarItem(placement: .topBarTrailing) {
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    if let support = searchViewsProvider.supportButtonModel {
                         Button {
                             support
                                 .action
@@ -96,14 +97,13 @@ struct SearchContentContainerView<Attributes: SearchViewAttributes, ViewProvider
                         router.dismiss(controller.value)
                     } label: {
                         Image(systemName: "chevron.backward")
-                            .font(.body)
-                            .fontWeight(.semibold)
+                            .font(.body.weight(.semibold))
                     }
                     .tint(Color.textLightest)
                     .accessibilityLabel(Text("Back", bundle: .core))
                 }
             }
-            .onChange(of: searchText) {
+            .onChange(of: searchText) { _ in
                 searchContext.searchText.send(searchText)
             }
             .sheet(

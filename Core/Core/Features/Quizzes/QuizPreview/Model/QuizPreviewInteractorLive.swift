@@ -59,11 +59,11 @@ private extension URL {
     var previewURL: URL {
         var result = self
         result = result.appendingPathComponent("take")
-        result = result.appendingQueryItems(
+        result = result.appendingQueryItems([
             URLQueryItem(name: "preview", value: "1"),
             URLQueryItem(name: "persist_headless", value: "1"),
             URLQueryItem(name: "force_user", value: "1")
-        )
+        ])
         return result
     }
 }

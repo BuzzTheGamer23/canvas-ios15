@@ -72,12 +72,10 @@ open class DynamicButton: UIButton {
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        registerForTraitChanges()
     }
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        registerForTraitChanges()
     }
 
     open override var isHighlighted: Bool {
@@ -94,12 +92,12 @@ open class DynamicButton: UIButton {
         layer.borderWidth = 0.5
         layer.borderColor = color.cgColor
     }
-
-    private func registerForTraitChanges() {
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         /// Border is set by using `cgColor` which doesn't change when
         /// the light/dark theme changes so we have to manually force an update.
-        let traits = [UITraitUserInterfaceStyle.self]
-        registerForTraitChanges(traits) { (self: DynamicButton, _) in
+        super.traitCollectionDidChange(previousTraitCollection)
+        if (previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle) {
             /// Setting an invalid color will spam "CUICatalog: Invalid asset name supplied: ''" error to the console
             if self.borderColorName != "" {
                 self.didSetBorderColorName()

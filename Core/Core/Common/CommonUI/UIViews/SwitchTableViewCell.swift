@@ -53,9 +53,3 @@ public class SwitchTableViewCell: UITableViewCell {
         onToggleChange(sender)
     }
 }
-
-#Preview {
-    let cell = SwitchTableViewCell(style: .default, reuseIdentifier: nil)
-    cell.textLabel?.text = "test"
-    return cell
-}

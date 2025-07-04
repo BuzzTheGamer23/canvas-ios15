@@ -44,7 +44,7 @@ public class UIBarButtonItemWithCompletion: UIBarButtonItem {
         self.actionHandler = actionHandler
     }
 
-    public convenience init(
+    /*public convenience init(
         title: String?,
         image: UIImage?,
         actionHandler: (() -> Void)?
@@ -57,7 +57,7 @@ public class UIBarButtonItemWithCompletion: UIBarButtonItem {
         )
         self.target = self
         self.actionHandler = actionHandler
-    }
+    }*/
 
     @objc func buttonDidTap(sender: UIBarButtonItem) {
         actionHandler?()
