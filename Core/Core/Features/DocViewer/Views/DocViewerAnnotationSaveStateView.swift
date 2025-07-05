@@ -23,7 +23,7 @@ struct DocViewerAnnotationSaveStateView: View {
     @ObservedObject private var viewModel: DocViewerAnnotationToolbarViewModel
 
     init(
-        viewModel: DocViewerAnnotationToolbarViewModel,
+        viewModel: DocViewerAnnotationToolbarViewModel
     ) {
         self.viewModel = viewModel
     }
